@@ -1,35 +1,36 @@
-# alector_corpus
+# Alector Corpus v2 (scraped 2026-03-16)
 
-⚠️    I do not own this corpus   ⚠️
+Note: I do not own this corpus. I did not make the original scraper. 
 
+## Source
 
-More information at https://alectorsite.wordpress.com/corpus/ .
+Scraped from [corpusalector.huma-num.fr](https://corpusalector.huma-num.fr/) using `scrapers/scrape_alector.py` (Playwright).
 
-I made this repository public since the corpus is hardly accessible online. 
+Original corpus: Gala, N., Tack, A., Javourey-Drevet, L., Francois, T., & Ziegler, J.C. (2020).
+*Alector: A Parallel Corpus of Simplified French Texts with Alignments of Misreadings by Poor and Dyslexic Readers.*
+LREC 2020.
 
-## Setup
-Developed with ubuntu. 
-You will need to have installed:
-- Firefox Browser
-- gecko driver
-- selenium python package
+## Contents
 
-You will also need to be registered on alector's website.
+- `corpus/` — 79 text pairs (158 files)
+  - `{000..078}_source.txt` — original (more complex) version
+  - `{000..078}_target.txt` — simplified version
+- `alector_metadata.csv` — title, author, genre, character counts
 
-### Installation of gecko driver:
-1. Download and extract the latest release (https://github.com/mozilla/geckodriver/releases). Example :
-   - `wget https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz` 
-   - `tar -xvzf geckodriver-v0.29.1-linux64.tar.gz`
-1. Make the file executable: `chmod +x geckodriver`
-1. Create a folder where your geckodriver application will remain. Example: 
-   - `mkdir /lib/geckodriver/`
-1. Move the file to this newly created folder. Example: 
-   - `mv geckodriver /lib/geckodriver/geckodriver`
-1. Add the folder to PATH. Example: 
-   - `PATH=$PATH:/lib/geckodriver/`
+## Genre distribution
 
-### Running the scraping script
-Execute `python scrape_alector.py`. Give your credentials when prompted, and voilà!
+| Genre                    | Count |
+|--------------------------|------:|
+| explicatif\|documentaire |    39 |
+| narratif\|conte          |    36 |
+| narratif\|roman          |     3 |
+| narratif\|fable          |     1 |
 
-# Acknowledgements
-Núria Gala, Anaïs Tack, Ludivine Javourey-Drevet, Thomas François, Johannes C. Ziegler, **Alector: A Parallel Corpus of Simplified French Texts with Alignments of Misreadings by Poor and Dyslexic Readers**. Proceedings of the 12th Language Resources and Evaluation Conference. [[aclweb]](https://www.aclweb.org/anthology/2020.lrec-1.169.pdf)
+## Format
+
+Each text file contains one sentence per line (proper line breaks, UTF-8).
+This is an improvement over the original GitHub mirror which had entire texts on a single line.
+
+## Update to the scraper
+
+I re-did the scraper to use Playwright instead of selenium, the the original scraper is in this other repo: https://github.com/thiborose/alector_corpus
